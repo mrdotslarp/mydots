@@ -1,10 +1,4 @@
-# **>_**
-![Alt Text Describing Image](src/src.png)
+# COPY THIS OR ANY PFP OR LOGIN MANAGER WALLPAPER FOR YOUR RICE
+# DIRECTORY 
 
-__
-
-## System Info
-* **OS:** Arch Linux
-* **WM:** bspwm
-* **Login Manager:** LightDM
-* **Audio:** PipeWire
+/usr/share/backgrounds/
