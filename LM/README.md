@@ -1,4 +1,5 @@
 # COPY THIS OR ANY PFP OR LOGIN MANAGER WALLPAPER FOR YOUR RICE
-## DIRECTORY 
-
+### Directory
 /usr/share/backgrounds/
+
+#### USE pfp.jpg or wallpaper.jpg name 
