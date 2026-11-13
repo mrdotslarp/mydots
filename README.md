@@ -1,6 +1,8 @@
 # >_
 ![screenshot](src/src.png)
 
+--
+
 - **OS:** Arch Linux
 - **Window Manager:** [bspwm](https://github.com/baskerville/bspwm)
 - **Audio Server:** [PipeWire](https://pipewire.org/)
