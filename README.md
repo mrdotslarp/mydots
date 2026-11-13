@@ -1,7 +1,6 @@
 # >_
 ![screenshot](src/src.png)
 
-# .
 ## ≧◡≦
 
 - **OS:** Arch Linux
