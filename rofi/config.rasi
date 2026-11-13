@@ -1,0 +1,106 @@
+configuration {
+    modi:                "drun,run,window";
+    show-icons:          true;
+    icon-theme:          "WhiteSur-dark";
+    display-drun:        "󰣇 ";
+    display-run:         " ";
+    display-window:      "󰍲 ";
+    drun-display-format: "{name}";
+    font:                "JetBrainsMono Nerd Font 10";
+    /* Slightly larger font looks cleaner */
+}
+
+@theme "/dev/null"
+
+* {
+    /* Pure Monochrome Palette (90% Opacity) */
+    bg:               #000000E6;
+    bg-alt:           #1F1F1FE6;
+    fg:               #E0E0E0E6;
+    accent:           #FFFFFFE6;
+    border-col:       #2F2F2FE6;
+
+    background-color: transparent;
+    text-color:       @fg;
+}
+
+window {
+    width:            320px;
+    /* Compact "Cute" Width */
+    background-color: @bg;
+    border:           2px;
+    border-color:     @border-col;
+    border-radius:    16px;
+    padding:          2px;
+}
+
+mainbox {
+    orientation:      vertical;
+    spacing:          12px;
+    children:         [ inputbar, listview, mode-switcher ];
+}
+
+inputbar {
+    background-color: @bg-alt;
+    padding:          10px;
+    border-radius:    12px;
+    spacing:          8px;
+    children:         [ prompt, entry ];
+}
+
+prompt {
+    text-color:       @accent;
+    font:             "JetBrainsMono Nerd Font Bold 11";
+}
+
+entry {
+    placeholder:       "Search...";
+    placeholder-color: #666666E6;
+    vertical-align:    0.5;
+}
+
+listview {
+    lines:            6;
+    fixed-height:     false;
+    spacing:          0px;
+    scrollbar:        false;
+}
+
+element {
+    padding:          4px 10px;
+    border-radius:    10px;
+    spacing:          10px;
+}
+
+element selected {
+    background-color: @bg-alt;
+    text-color:       @accent;
+    /* Subtle accent border on the left */
+    border:           0px 0px 0px 3px;
+    border-color:     @accent;
+}
+
+element-icon {
+    size:             22px;
+}
+
+element-text {
+    vertical-align:   0.5;
+}
+
+mode-switcher {
+    spacing:          10px;
+}
+
+button {
+    padding:          4px;
+    background-color: @bg-alt;
+    text-color:       @fg;
+    border-radius:    20px;
+    horizontal-align: 0.5;
+}
+
+button selected {
+    background-color: @accent;
+    text-color:       @bg;
+}

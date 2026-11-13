@@ -1,0 +1,179 @@
+# -----------------------------------------------------------------------------
+# WM INDEPENDENT & SYSTEM ADMIN
+# -----------------------------------------------------------------------------
+
+# Refresh Bspwm and sxhkd config
+super + alt + r
+    bspc wm -r; pkill -USR1 -x sxhkd
+
+# Reload sxhkd config only
+super + Escape
+    pkill -USR1 -x sxhkd
+
+# Close focused window
+super + q
+    bspc node -c
+
+# Terminals
+super + {t,alt + t}
+    {xterm,konsole}
+
+# Launchers
+super + d
+    dmenu_run -nb '#000000' -nf '#FFFFFF' -sb '#FFFFFF' -sf '#000000'
+
+super + r
+    rofi -show drun
+
+# File Manager
+super + e
+    dolphin
+
+# Wallpaper & GUI Menus
+super + {z,w}
+    {feh --bg-fill --randomize ~/.config/walls/*,bash .config/bspwm/wall.sh}
+
+# Run custom Powermenu script
+super + n
+    bash ~/.config/bspwm/log.sh
+
+# -----------------------------------------------------------------------------
+# RESPONSIVE STATE TOGGLES (IF/ELSE)
+# -----------------------------------------------------------------------------
+
+# Toggle Polybar (on/off)
+super + y
+    if pgrep -x polybar > /dev/null; \
+    then \
+        killall polybar; \
+    else \
+        polybar & \
+    fi
+
+# Full screenshot with directory validation
+Print
+    if [ -d ~/Pictures/Screenshots ]; \
+    then \
+        scrot '~/Pictures/Screenshots/%Y-%m-%d_%H%M%S.png'; \
+    else \
+        mkdir -p ~/Pictures/Screenshots && scrot '~/Pictures/Screenshots/%Y-%m-%d_%H%M%S.png'; \
+    fi
+
+# Keyboard Backlight Loop (0 -> 50 -> 100 -> 0)
+F10
+    BRIGHTNESS=$(brightnessctl --device='dell::kbd_backlight' get); \
+    MAX=$(brightnessctl --device='dell::kbd_backlight' max); \
+    PERC=$(( BRIGHTNESS * 100 / MAX )); \
+    if [ "$PERC" -lt 40 ]; then \
+        brightnessctl --device='dell::kbd_backlight' set 50%; \
+    elif [ "$PERC" -lt 90 ]; then \
+        brightnessctl --device='dell::kbd_backlight' set 100%; \
+    else \
+        brightnessctl --device='dell::kbd_backlight' set 0%; \
+    fi
+
+# Toggle floating state (on/off)
+super + space
+    if bspc query -N -n focused.floating > /dev/null; \
+        then \
+            bspc node -t tiled; \
+        else \
+            bspc node -t floating; \
+    fi
+
+# Toggle minimize (hide/unhide)
+super + v
+    if bspc query -N -n .hidden > /dev/null; \
+    then \
+        bspc node $(bspc query -N -n .hidden | tail -n1) -g hidden=off -f; \
+    else \
+        bspc node -g hidden=on; \
+    fi
+
+# Toggle Fullscreen (Responsive)
+super + f
+    if bspc query -N -n .fullscreen > /dev/null; then \
+        bspc node -t tiled; \
+    else \
+        bspc node -t fullscreen; \
+    fi
+
+# Toggle Microphone Mute/Unmute (One click on, second click off)
+F4
+    pamixer --toggle-mute --default-source
+
+# Toggle Audio Output Mute/Unmute (One click on, second click off)
+F1
+    pamixer --toggle-mute
+
+# Toggle Monocle/Tiled Layout
+super + m
+    if bspc query -T -d | grep -q '"layout":"monocle"'; \
+    then \
+        bspc desktop -l tiled; \
+    else \
+        bspc desktop -l monocle; \
+    fi
+
+# -----------------------------------------------------------------------------
+# FUNCTION KEYS (SYSTEM CONTROL)
+# -----------------------------------------------------------------------------
+
+# Audio Volume
+{F2,F3}
+    pamixer {--decrease,--increase} 5
+
+# Media Control
+{F6,F7,F8}
+    playerctl {previous,play-pause,next}
+
+# Screen Brightness (brightnessctl)
+{F11,F12}
+    brightnessctl set {5%-,+5%}
+
+# System Tools (htop, nmtui)
+# {F5,F9}
+
+
+# -----------------------------------------------------------------------------
+# NAVIGATION & DESKTOPS
+# -----------------------------------------------------------------------------
+
+# Focus node or Desktop
+super + {Left,Down,Up,Right}
+    bspc node -f {west,south,north,east}
+
+super + {1-9,0}
+    bspc desktop -f '^{1-9,10}'
+
+# Send Node to Desktop
+super + shift + {1-9,0}
+    bspc node -d '^{1-9,10}'
+
+# Increase/Decrease window gaps
+super + {minus,equal}
+    bspc config -d focused window_gap $(( $(bspc config -d focused window_gap) {-,+} 2 ))
+
+# Toggle Sticky/Private
+super + {s,p,l}
+    bspc node -g {sticky,private,locked}
+
+# -----------------------------------------------------------------------------
+# WINDOW MANIPULATION (MOVE & RESIZE)
+# -----------------------------------------------------------------------------
+
+# Move floating windows (Standard & Precise)
+super + shift + {_,ctrl + }{Left,Down,Up,Right}
+    bspc node -v {%-20 0,0 %20,0 %-20,%20 0, -5 0,0 5,0 -5,5 0}
+
+# Expand/Contract window outward
+super + alt + {_,shift + }{Left,Down,Up,Right}
+    bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0, right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+# Pre-select the direction for the next window
+super + ctrl + {Left,Down,Up,Right}
+    bspc node -p {west,south,north,east}
+
+# Cancel the pre-selection
+super + ctrl + space
+    bspc node -p cancel

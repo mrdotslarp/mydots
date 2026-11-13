@@ -1,0 +1,106 @@
+! ------------------------------------------------------------------------------
+! 1. GLOBAL XFT & RENDERING (THE ENGINE)
+! ------------------------------------------------------------------------------
+Xft.dpi:       96
+Xft.antialias: 1
+Xft.hinting:   1
+Xft.hintstyle: hintslight
+Xft.rgba:      rgb
+Xft.lcdfilter: lcddefault
+
+! ------------------------------------------------------------------------------
+! 2. CORE INSTANCE SETTINGS
+! ------------------------------------------------------------------------------
+xterm*termName:           xterm-256color
+xterm*locale:             true
+xterm*utf8:               1
+xterm*saveLines:          32768
+xterm*scrollBar:          false
+xterm*toolBar:            false
+xterm*internalBorder:     0
+xterm*loginShell:         true
+xterm*jumpScroll:         true
+xterm*multiScroll:        true
+xterm*fastScroll:         true
+
+! ------------------------------------------------------------------------------
+! 3. FONT STACK (LIBERATION MONO)
+! ------------------------------------------------------------------------------
+xterm*faceName:           Liberation Mono:size=11:antialias=true
+xterm*boldFont:           Liberation Mono:bold:size=11:antialias=true
+xterm*italicFont:         Liberation Mono:italic:size=11:antialias=true
+xterm*letterSpace:        0
+xterm*scaleHeight:        1.0
+xterm*forceBoxChars:      true
+xterm*allowBoldFonts:     true
+
+
+! ------------------------------------------------------------------------------
+! 4. TOKYO NIGHT THEME & OPACITY
+! ------------------------------------------------------------------------------
+xterm*background:         #000000
+xterm*foreground:         #c0caf5
+xterm*cursorColor:        #f7768e
+xterm*cursorBlink:        true
+! 50% Opacity (Requires a compositor like Picom)
+xterm*opacity:            128
+
+! Black / Bright Black
+xterm*color0:             #15161e
+xterm*color8:             #414868
+! Red / Bright Red
+xterm*color1:             #f7768e
+xterm*color9:             #f7768e
+! Green / Bright Green
+xterm*color2:             #9ece6a
+xterm*color10:            #9ece6a
+! Yellow / Bright Yellow
+xterm*color3:             #e0af68
+! Blue / Bright Blue
+xterm*color11:            #e0af68
+xterm*color4:             #7aa2f7
+xterm*color12:            #7aa2f7
+! Magenta / Bright Magenta
+xterm*color5:             #bb9af7
+xterm*color13:            #bb9af7
+! Cyan / Bright Cyan
+xterm*color6:             #7dcfff
+xterm*color14:            #7dcfff
+! White / Bright White
+xterm*color7:             #a9b1d6
+xterm*color15:            #c0caf5
+
+! ------------------------------------------------------------------------------
+! 5. ADVANCED USER EXPERIENCE (UX) TWEAKS
+! ------------------------------------------------------------------------------
+! URL/Path selection: Triple-clicking selects full paths/URLs correctly
+xterm*charClass: 33:48,35-47:48,58-59:48,61:48,63-64:48,95:48,126:48
+xterm*trimSelection:      true
+xterm*selectToClipboard:  true
+
+! Pointer behavior: Hides cursor while typing to prevent obstruction
+xterm*pointerMode:        2
+xterm*pointerColor:       #f7768e
+xterm*pointerColorBackground: #1a1b26
+
+! ------------------------------------------------------------------------------
+! 6. INPUT FIXES & KEYBINDINGS
+! ------------------------------------------------------------------------------
+xterm*backarrowKey:       false
+xterm*ttyModes:           erase ^?
+xterm*ptyInitialErase:    true
+xterm*eightBitInput:      false
+xterm*metaSendsEscape:    true
+
+! Use XTerm (capitalized) to ensure it hits the class
+XTerm.vt100.translations: #override \n\
+    Ctrl <Key>minus: smaller-vt-font() \n\
+    Ctrl <Key>plus: larger-vt-font() \n\
+    Ctrl <Key>equal: larger-vt-font() \n\
+    Ctrl <Key>KP_Subtract: smaller-vt-font() \n\
+    Ctrl <Key>KP_Add: larger-vt-font() \n\
+    Ctrl <Key>0: set-vt-font(d) \n\
+    Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
+    Ctrl Shift <Key>V: insert-selection(CLIPBOARD) \n\
+    <Btn4Down>: scroll-back(5,line) \n\
+    <Btn5Down>: scroll-forw(5,line)
