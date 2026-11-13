@@ -139,6 +139,14 @@ super + m
 # NAVIGATION & DESKTOPS
 # -----------------------------------------------------------------------------
 
+# Focus the last used node (window)
+super + Tab
+    bspc node -f last
+
+# Cycle through every open window forward and backward
+super + {_,shift + }Tab
+    bspc node -f {next,prev}.local.!hidden.window
+
 # Focus node or Desktop
 super + {Left,Down,Up,Right}
     bspc node -f {west,south,north,east}
