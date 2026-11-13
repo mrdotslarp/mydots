@@ -1,8 +1,8 @@
 # **>_**
 ![Alt Text Describing Image](src/src.png)
 
-## Info
-Login Manager = Lightdm
-Audio = Pipewire
-WM = BSPWM
-OS = ArchLinux
+## System Info
+* **OS:** Arch Linux
+* **WM:** bspwm
+* **Login Manager:** LightDM
+* **Audio:** PipeWire
