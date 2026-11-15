@@ -171,12 +171,55 @@ super + {s,p,l}
 # -----------------------------------------------------------------------------
 
 # Move floating windows (Standard & Precise)
-super + shift + {_,ctrl + }{Left,Down,Up,Right}
-    bspc node -v {%-20 0,0 %20,0 %-20,%20 0, -5 0,0 5,0 -5,5 0}
+super + shift + Left
+    bspc node -v -20 0
 
-# Expand/Contract window outward
-super + alt + {_,shift + }{Left,Down,Up,Right}
-    bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0, right -20 0,top 0 20,bottom 0 -20,left 20 0}
+super + shift + Down
+    bspc node -v 0 20
+
+super + shift + Up
+    bspc node -v 0 -20
+
+super + shift + Right
+    bspc node -v 20 0
+
+super + shift + ctrl + Left
+    bspc node -v -5 0
+
+super + shift + ctrl + Down
+    bspc node -v 0 5
+
+super + shift + ctrl + Up
+    bspc node -v 0 -5
+
+super + shift + ctrl + Right
+    bspc node -v 5 0
+
+# Expand window outward
+super + alt + Left
+    bspc node -z left -20 0
+
+super + alt + Down
+    bspc node -z bottom 0 20
+
+super + alt + Up
+    bspc node -z top 0 -20
+
+super + alt + Right
+    bspc node -z right 20 0
+
+# Contract window inward
+super + alt + shift + Left
+    bspc node -z right -20 0
+
+super + alt + shift + Down
+    bspc node -z top 0 20
+
+super + alt + shift + Up
+    bspc node -z bottom 0 -20
+
+super + alt + shift + Right
+    bspc node -z left 20 0
 
 # Pre-select the direction for the next window
 super + ctrl + {Left,Down,Up,Right}
