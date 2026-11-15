@@ -115,6 +115,15 @@ super + m
         bspc desktop -l monocle; \
     fi
 
+# Toggle Pseudo-Tiled Mode
+super + b
+    if bspc query -N -n focused.pseudo_tiled > /dev/null; \
+    then \
+        bspc node -t tiled; \
+    else \
+        bspc node -t pseudo_tiled; \
+    fi
+
 # -----------------------------------------------------------------------------
 # FUNCTION KEYS (SYSTEM CONTROL)
 # -----------------------------------------------------------------------------
