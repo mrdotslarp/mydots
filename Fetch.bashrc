@@ -202,3 +202,5 @@ alias logs="sudo find /var/log -type f -exec file {} \; | grep 'text' | cut -d' 
 # SHA1
 alias sha1='openssl sha1'
 alias recon='gpu-screen-recorder   -w screen   -f 60   -a default_output   -o ~/Videos/Recordings/rice-test.mp4'
+
+alias chickram='/usr/bin/ps -e -o pid,user,%mem,rss,comm | sort -k4 -nr | head -n 15'
