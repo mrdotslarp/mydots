@@ -2,6 +2,7 @@
 
 pgrep -x sxhkd > /dev/null || sxhkd &
 polybar &
+xsetroot -cursor_name left_ptr &
 # Disable DPMS (Display Power Management Signaling)
 xset -dpms
 
