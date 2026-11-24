@@ -109,5 +109,5 @@ XTerm.vt100.translations: #override \n\
 ! Mouse
 ! -------
 
-Xcursor.theme: Breeze_Light
-Xcursor.size: 24
+! Xcursor.theme: Breeze_Light
+! Xcursor.size: 24
